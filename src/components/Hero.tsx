@@ -43,7 +43,6 @@ export default function Hero() {
       <div className="cover-sheet" aria-label="Program summary">
         <div className="cover-sheet-head">
           <span>PROGRAM SUMMARY</span>
-          <span>FILED FALL 2025</span>
         </div>
         <dl className="cover-fields">
           {coverFields.map((field) => (
