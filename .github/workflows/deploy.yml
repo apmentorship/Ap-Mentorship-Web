@@ -1,8 +1,9 @@
-name: Deploy to GitHub Pages
+name: Deploy static content to Pages
 
 on:
   push:
-    branches: ['main'] # Change to 'master' if your main branch is master
+    branches: ['main']
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -36,9 +37,6 @@ jobs:
         run: npm run build
 
       - name: Setup Pages
-        uses: actions/configure-pages@v4
-
-      - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: './dist'
