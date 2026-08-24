@@ -24,13 +24,10 @@ export const discordInviteCode = "replace-with-amn-invite";
 export const web3FormsAccessKey = "33a4c03c-6a8a-48be-a22d-f5cd1f6a5e03";
 
 export const coverFields: CoverField[] = [
-  { label: "Program", value: "AP Mentor Network" },
-  { label: "Status", value: "Student\u2011led, volunteer\u2011run" },
-  { label: "Cost to join", value: "$0.00" },
-  { label: "Members enrolled", value: "247", filled: true },
-  { label: "Subjects covered", value: "6", filled: true },
-  { label: "Workshops held", value: "31", filled: true },
-  { label: "Schools reached", value: "12", filled: true },
+  { label: "Members", value: "50" },
+  { label: "Mentors", value: "5" },
+  { label: "Schools reached", value: "NA" },
+  { label: "Total workshop attendance", value: "NA" },
 ];
 
 export const subjects: Subject[] = [
@@ -109,24 +106,6 @@ export const libraryTree: LibraryBranch[] = [
           },
         ],
       },
-      {
-        unit: "Unit 6 \u2014 Rotational Motion",
-        resources: [
-          {
-            title: "Workshop slides (PDF)",
-            downloadUrl: "/downloads/ap-physics-1-unit-6-slides.pdf",
-          },
-          { title: "Workshop recording (49 min)" },
-          { title: "Practice free-response set, with mentor answer key" },
-        ],
-      },
-      {
-        unit: "Unit 7 \u2014 Oscillations",
-        resources: [
-          { title: "Workshop slides (PDF)" },
-          { title: "Formula reference sheet" },
-        ],
-      },
     ],
   },
   {
@@ -135,8 +114,6 @@ export const libraryTree: LibraryBranch[] = [
       {
         unit: "Unit 10 \u2014 Infinite Sequences and Series",
         resources: [
-          { title: "Convergence test flowchart" },
-          { title: "Practice problem set, with mentor answer key" },
         ],
       },
     ],
@@ -147,8 +124,6 @@ export const libraryTree: LibraryBranch[] = [
       {
         unit: "Period 6 \u2014 1865 to 1898",
         resources: [
-          { title: "Annotated DBQ example, scored 6/6" },
-          { title: "Key terms and figures list" },
         ],
       },
     ],
@@ -157,32 +132,11 @@ export const libraryTree: LibraryBranch[] = [
 
 export const events: EventItem[] = [
   {
-    date: "Sep 3",
-    time: "6:30 PM ET",
-    subject: "AP Chemistry",
-    topic: "Equilibrium review",
-    presenter: "Priya N.",
-  },
-  {
-    date: "Sep 10",
-    time: "7:00 PM ET",
-    subject: "AP Calculus BC",
-    topic: "Series convergence tests",
-    presenter: "Marcus T.",
-  },
-  {
-    date: "Sep 17",
-    time: "6:00 PM ET",
-    subject: "AP History",
-    topic: "DBQ workshop, live grading",
-    presenter: "Henry O.",
-  },
-  {
-    date: "Sep 24",
-    time: "6:30 PM ET",
-    subject: "AP Physics 1",
-    topic: "Rotational motion review",
-    presenter: "Henry O.",
+    date: "xxx 1",
+    time: "x:xx PM PST",
+    subject: "AP Physics",
+    topic: "Kinematics and Dynamics",
+    presenter: "Henry Y.",
   },
 ];
 
@@ -220,28 +174,8 @@ export const mentors: Mentor[] = [
 ];
 
 export const ledgerStats: LedgerStat[] = [
-  { label: "Members", value: "247" },
-  { label: "Active mentors", value: "14" },
-  { label: "Schools reached", value: "12" },
-  { label: "Total workshop attendance", value: "1,180" },
-  { label: "Events hosted", value: "31" },
-  { label: "Resources filed in the library", value: "96" },
-];
-
-export const feedbackQuotes: FeedbackQuote[] = [
-  {
-    quote:
-      "The rotational motion workshop covered the one topic my teacher rushed through in April. It made the FRQ section make sense.",
-    source: "Anonymous, AP Physics 1 workshop attendee",
-  },
-  {
-    quote:
-      "I used the DBQ examples to see what a 6/6 actually looks like. That was more useful than any rubric handout.",
-    source: "Anonymous, AP US History workshop attendee",
-  },
-  {
-    quote:
-      "Having a mentor check my essay before I turned it in to my teacher caught mistakes I'd been repeating all year.",
-    source: "Anonymous, AP English Literature workshop attendee",
-  },
+  { label: "Members", value: "50" },
+  { label: "Mentors", value: "5" },
+  { label: "Schools reached", value: "NA" },
+  { label: "Total workshop attendance", value: "NA" },
 ];

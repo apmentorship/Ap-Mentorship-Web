@@ -15,18 +15,6 @@ export default function Impact() {
           </div>
         ))}
       </dl>
-
-      <div className="feedback">
-        <p className="feedback-label">From the workshop survey</p>
-        <div className="feedback-cards">
-          {feedbackQuotes.map((item) => (
-            <blockquote className="feedback-card" key={item.source}>
-              <p>{item.quote}</p>
-              <footer>{item.source}</footer>
-            </blockquote>
-          ))}
-        </div>
-      </div>
     </section>
   );
 }
