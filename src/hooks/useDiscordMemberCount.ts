@@ -1,54 +1,48 @@
 import { useEffect, useState } from "react";
+import { discordInviteId } from "../data";
 
-interface DiscordInviteCounts {
-  memberCount: number | null;
-  isLoading: boolean;
-  error: string | null;
-}
-
-interface DiscordInviteResponse {
-  approximate_member_count?: number;
+interface DiscordMemberCountState {
+  count: number | null;
+  loading: boolean;
+  error: boolean;
 }
 
 /**
- * Fetches an approximate member count for a Discord server using
- * Discord's public invite endpoint. No bot token or auth required,
- * since this is the same endpoint the Discord client itself uses to
- * preview an invite before you click it.
- *
- * The count is "approximate" on Discord's end (their words, not ours),
- * refreshed periodically rather than truly live. If the fetch fails for
- * any reason (invite not created yet, offline, rate-limited), memberCount
- * stays null so the caller can fall back to a static placeholder instead
- * of showing an error to visitors.
+ * Fetches a live, approximate member count for the AMN Discord server via
+ * Discord's public invite endpoint (the same one used by Discord's own
+ * embeds — no bot token required). Returns null for `count` while loading
+ * or if the request fails, so callers can fall back to a static value.
  */
-export function useDiscordMemberCount(inviteCode: string): DiscordInviteCounts {
-  const [memberCount, setMemberCount] = useState<number | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+export function useDiscordMemberCount(): DiscordMemberCountState {
+  const [state, setState] = useState<DiscordMemberCountState>({
+    count: null,
+    loading: true,
+    error: false,
+  });
 
   useEffect(() => {
     let cancelled = false;
 
     async function fetchCount() {
       try {
-        const response = await fetch(
-          `https://discord.com/api/v10/invites/${inviteCode}?with_counts=true`
+        const res = await fetch(
+          `https://discord.com/api/v10/invites/${discordInviteId}?with_counts=true`
         );
-        if (!response.ok) {
-          throw new Error(`Discord API returned ${response.status}`);
-        }
-        const data: DiscordInviteResponse = await response.json();
-        if (!cancelled && typeof data.approximate_member_count === "number") {
-          setMemberCount(data.approximate_member_count);
-        }
-      } catch (err) {
+        if (!res.ok) throw new Error("Discord invite request failed");
+        const data = await res.json();
         if (!cancelled) {
-          setError(err instanceof Error ? err.message : "Failed to load member count");
+          setState({
+            count:
+              typeof data.approximate_member_count === "number"
+                ? data.approximate_member_count
+                : null,
+            loading: false,
+            error: false,
+          });
         }
-      } finally {
+      } catch {
         if (!cancelled) {
-          setIsLoading(false);
+          setState({ count: null, loading: false, error: true });
         }
       }
     }
@@ -57,7 +51,7 @@ export function useDiscordMemberCount(inviteCode: string): DiscordInviteCounts {
     return () => {
       cancelled = true;
     };
-  }, [inviteCode]);
+  }, []);
 
-  return { memberCount, isLoading, error };
+  return state;
 }

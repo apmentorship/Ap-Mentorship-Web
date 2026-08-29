@@ -1,11 +1,26 @@
 import { Link } from "react-router-dom";
-import { coverFields } from "../data";
+import { coverFields, discordInviteCode } from "../data";
 import { useInkStamp } from "../hooks/useInkStamp";
+import { useDiscordMemberCount } from "../hooks/useDiscordMemberCount";
 import InkRipples from "./InkRipples";
 
 export default function Hero() {
   const joinStamp = useInkStamp();
   const aboutStamp = useInkStamp();
+  const { count: memberCount, loading: membersLoading } = useDiscordMemberCount();
+
+  const displayFields = coverFields.map((field) => {
+    if (field.label !== "Members") return field;
+
+    if (membersLoading) {
+      return { ...field, value: "…", filled: false };
+    }
+    if (memberCount !== null) {
+      return { ...field, value: memberCount.toLocaleString(), filled: true };
+    }
+    // Fetch failed — fall back to the static value from data.ts.
+    return field;
+  });
 
   return (
     <section className="hero" id="home">
@@ -21,7 +36,7 @@ export default function Hero() {
         <div className="hero-actions">
           <a
             className={`btn btn-primary ${joinStamp.stampClassName}`}
-            href="https://discord.gg/Eke2BFAAT"
+            href={discordInviteCode}
             onClick={joinStamp.trigger}
             onAnimationEnd={joinStamp.onAnimationEnd}
           >
@@ -45,7 +60,7 @@ export default function Hero() {
           <span>PROGRAM SUMMARY</span>
         </div>
         <dl className="cover-fields">
-          {coverFields.map((field) => (
+          {displayFields.map((field) => (
             <div className="cover-field" key={field.label}>
               <dt>{field.label}</dt>
               <dd className={field.filled ? "filled" : undefined}>{field.value}</dd>

@@ -1,3 +1,5 @@
+import { aboutUs } from "../data";
+
 export default function About() {
   return (
     <section className="section" id="about">
@@ -7,15 +9,37 @@ export default function About() {
 
       <div className="about-grid">
         <div className="about-copy">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae laudantium, totam illum sed placeat, velit, sequi dignissimos voluptas autem dolor nam cumque quos? Quod blanditiis ad magni, veniam vero totam.
-          </p>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis, sunt id corrupti quae, possimus doloremque pariatur hic voluptatibus modi neque quidem, est cum obcaecati dignissimos quaerat accusamus. Autem, nobis esse.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci error atque omnis, nulla sunt, esse, at hic sit voluptatibus consectetur est sequi! Omnis id laborum beatae veritatis? Ipsam, praesentium repellendus?
-          </p>
+          {aboutUs.intro.map((paragraph) => (
+            <p key={paragraph.slice(0, 24)}>{paragraph}</p>
+          ))}
+        </div>
+
+        <div className="about-subjects">
+          <h3>Subjects We Support</h3>
+          <p>{aboutUs.subjectsWeSupportIntro}</p>
+          <ul>
+            {aboutUs.subjectsWeSupport.map((subject) => (
+              <li key={subject}>{subject}</li>
+            ))}
+          </ul>
+          <p>{aboutUs.subjectsWeSupportOutro}</p>
+        </div>
+
+        <div className="about-offer">
+          <h3>What We Offer</h3>
+          {aboutUs.whatWeOffer.map((item) => (
+            <div className="about-offer-item" key={item.title}>
+              <h4>{item.title}</h4>
+              <p>{item.description}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="about-mission">
+          <h3>Our Mission</h3>
+          {aboutUs.mission.map((paragraph) => (
+            <p key={paragraph.slice(0, 24)}>{paragraph}</p>
+          ))}
         </div>
       </div>
     </section>

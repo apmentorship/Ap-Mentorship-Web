@@ -7,7 +7,7 @@ export interface Subject {
   name: string;
   description: string;
   channel: string;
-  link: string;
+  link?: string;
 }
 
 export interface Resource {

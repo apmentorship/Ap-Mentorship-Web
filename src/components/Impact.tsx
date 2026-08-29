@@ -1,4 +1,4 @@
-import { ledgerStats, feedbackQuotes } from "../data";
+import {ledgerStats} from "../data";
 
 export default function Impact() {
   return (

@@ -1,4 +1,4 @@
-import { events } from "../data";
+import { events, discordInviteCode } from "../data";
 
 export default function Events() {
   return (
@@ -20,20 +20,30 @@ export default function Events() {
           <span role="columnheader">Presenter</span>
           <span role="columnheader"></span>
         </div>
-        {events.map((event) => (
-          <div className="docket-row" role="row" key={`${event.date}-${event.topic}`}>
-            <span data-label="Date">{event.date}</span>
-            <span data-label="Time">{event.time}</span>
-            <span data-label="Subject">{event.subject}</span>
-            <span data-label="Topic">{event.topic}</span>
-            <span data-label="Presenter">{event.presenter}</span>
-            <span data-label="">
-              <a className="text-link" href="#">
-                Register
-              </a>
-            </span>
-          </div>
-        ))}
+        {events.length === 0 ? (
+          <p className="docket-empty">
+            Nothing on the docket right now — check back soon or{" "}
+            <a className="text-link" href={discordInviteCode}>
+              join the Discord
+            </a>{" "}
+            to get notified when the next workshop is announced.
+          </p>
+        ) : (
+          events.map((event) => (
+            <div className="docket-row" role="row" key={`${event.date}-${event.topic}`}>
+              <span data-label="Date">{event.date}</span>
+              <span data-label="Time">{event.time}</span>
+              <span data-label="Subject">{event.subject}</span>
+              <span data-label="Topic">{event.topic}</span>
+              <span data-label="Presenter">{event.presenter}</span>
+              <span data-label="">
+                <a className="text-link" href="#">
+                  Register
+                </a>
+              </span>
+            </div>
+          ))
+        )}
       </div>
     </section>
   );

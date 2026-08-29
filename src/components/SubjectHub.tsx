@@ -53,9 +53,6 @@ export default function SubjectHub() {
                     <li>Workshop slides</li>
                     <li>Study strategies</li>
                   </ul>
-                  <a className="text-link" href={subject.link}>
-                    Open the {subject.channel} channel in discord
-                  </a>
                 </div>
               </div>
             </li>
