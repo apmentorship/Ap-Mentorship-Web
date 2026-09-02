@@ -90,15 +90,6 @@ export const subjects: Subject[] = [
     channel: "#ap-lit",
   },
   {
-    id: "ushistory",
-    dept: "hum",
-    tag: "[HUM]",
-    name: "AP US History",
-    description:
-      "Period-by-period timelines cross-referenced to the DBQ and LEQ rubrics, with a mentor-graded practice essay each month.",
-    channel: "#ap-ushistory",
-  },
-  {
     id: "worldhistory",
     dept: "hum",
     tag: "[HUM]",
